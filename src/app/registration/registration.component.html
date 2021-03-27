@@ -1,0 +1,163 @@
+
+
+  <nav class="navbar navbar-expand-md fixed-top">
+
+    <a class="imga" href="#">
+      <img src="/assets/img/dxclogo1.jpg" width="45" height="50" class="d-inline-block align-top" alt="logo">
+    </a>
+
+    &nbsp;
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+  
+        <li class="nav-item dropdown fr">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="/admin-login">Admin</a>
+            <a class="dropdown-item" href="/userlogin">User</a>
+          </div>
+        </li>
+      </ul>
+    
+    </div>
+  </nav>
+  
+
+
+
+
+
+
+
+
+
+<div class="bdyc">
+
+  <div class="form frm">
+    <form #registrationForm='ngForm' (ngSubmit)="registerUser()">
+       <small class="text-danger">{{msg}}</small>  
+       <img src="https://www.radu.nl/sites/images/Rood.png" alt="Avatar" class="avatar" >
+       <h2>SignUp Form</h2>      
+           
+       <div class="form-group">
+           <label for="userName">Name</label>
+               <input type="text" name="name" id="name" [(ngModel)]='user.userName' #name="ngModel" minlength="6" pattern="[a-zA-Z ]*" required class="form-control" placeholder="Enter name" aria-describedby="helpId"  > 
+               <div style="color: red;" *ngIf="name.invalid && (name.dirty || name.touched)" >
+                   <div *ngIf="name.errors?.required" >*Name is required.</div>
+                   <div *ngIf="name.errors?.pattern" >*Name must be alpha.</div>
+                   <div *ngIf="name.errors?.minlength" >*Name must be at least 6 characters long.</div>
+                   </div>
+                   </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+                <input type="text" name="email" id="email" [(ngModel)]='user.userEmail' [pattern]="emailPattern" #email="ngModel"  minlength="4" class="form-control" placeholder="Enter email" aria-describedby="helpId" required> 
+                    <div style="color: red;" class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched) ">
+                    <div  *ngIf="email.errors?.required"class="text-danger"> *Email id is required</div>
+                    <div *ngIf="email.errors?.pattern" class="text-danger">  *Email id should be in valid format</div>
+                    </div>
+                    </div>
+
+       <div class="form-group">
+           <label for="designation">Designation</label>
+               <input type="text" name="designation" id="designation" [(ngModel)]='user.designation' #designation="ngModel" required minlength="5"  pattern="[a-zA-Z ]*"
+                   class="form-control" placeholder="Enter designation" aria-describedby="helpId" > 
+               <div style="color: red;" *ngIf="designation.invalid && (designation.dirty || designation.touched)  ">
+               <div *ngIf="designation.errors?.required" >*Designation is required.</div>
+               <div *ngIf="designation.errors?.pattern" >*Designation must be alpha.</div>
+               <div *ngIf="designation.errors?.minlength" >*Designation must be Minimum 5 characters long.</div>
+               </div>
+               </div>
+               
+       <div class="form-group">
+           <label for="phone">Phone</label>
+               <input type="text" name="phone" id="phone" [(ngModel)]='user.userPhone' [pattern]="phonePattern" #phone="ngModel" required maxlength="10"
+                 class="form-control" placeholder="Enter your contact number" aria-describedby="helpId" > 
+               <div style="color: red;" *ngIf="phone.invalid && (phone.dirty || phone.touched)  ">
+                   <div *ngIf="phone.errors?.required" >*Phone number is required.</div>
+                   <div *ngIf="phone.errors?.pattern">*Phone number is not valid.</div> 
+               </div>
+               </div>
+
+        <div class="form-group">
+            <label for="country">Country</label>
+                <select class="form-control" id='country' name='country' [(ngModel)]='user.country' #country="ngModel" required >
+                    
+                    <option *ngFor='let country of countries' [value]="country">{{country}}</option>
+                    <div style="color: red;" *ngIf="country.invalid && (country.dirty || country.touched) ">
+                        <div *ngIf="country.errors?.required" >*Country field is required.</div>
+                         
+                    </div>
+               </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="address">Address</label>
+                <input type="text" name="address" id="address" [(ngModel)]='user.useraddress' #address="ngModel" required minlength="4" 
+                    class="form-control" placeholder="Enter address" aria-describedby="helpId" > 
+                <div style="color: red;" *ngIf="address.invalid && (address.dirty || address.touched) ">
+                    <div *ngIf="address.errors?.required" >*Address field is required.</div>
+                    <div *ngIf="address.errors?.minlength">*Address is not valid.</div> 
+                </div>
+                </div>
+
+        <div class="form-group">
+                    <label for="city">City</label>
+                        <select class="form-control" id='city' name='city' [(ngModel)]='user.city' #city="ngModel" required>
+                            <option disabled>---Select---</option>
+                            <option *ngFor='let city of cities' [value]="city">{{city}}</option>
+                        </select>
+                </div> 
+
+        <div class="form-group">
+            <label for="state">State</label>
+                <select class="form-control" id='state' name='state' [(ngModel)]='user.state' #state="ngModel" required>
+                    <option disabled>---Select---</option>
+                    <option *ngFor='let state of states' [value]="state">{{state}}</option>
+                </select>
+        </div>                                                                                        
+     
+       <div class="form-group">
+           <label for="password">Password</label>
+            <input type="password" name="password" id="password" [(ngModel)]='user.userPassword' #password="ngModel" required minlength="6" 
+                       [class.is-invalid]="password.invalid && password.touched" class="form-control" placeholder="Enter password" aria-describedby="helpId" >
+                   <div class="text-red-danger" style="color:red" [class.d-none]="(password.valid||password.untouched) ">*Password field is required</div>
+        </div>
+
+       <div class="form-group">
+           <label for="password">Confirm Password</label>
+           <input type="password" name="cpassword" id="cpassword" (ngModel)='user.userPassword'  #cpassword="ngModel" required minlength=6  class="form-control"
+                   [class.is-invalid]="cpassword.invalid && cpassword.touched"placeholder="Enter confirm password" aria-describedby="helpId" >
+                         
+               <div class="text-red-danger" style="color:red" [class.d-none]="(cpassword.valid||cpassword.untouched) ">*Confirm password field is required</div>
+                  
+               <div class="text-red-danger" style="color:red" [class.d-none]="(cpassword.value==password.value)||cpassword.untouched">*Password and Confirm password must be matching</div>
+       </div> 
+                
+       <button type="submit" [disabled]='registrationForm.form.invalid'  class="btn btn-primary">Sign Up</button>
+         <br><br>
+      
+        <small class="float-right btextual crsr" [routerLink]="['/userlogin']">Existing user? Login here</small>
+    
+           
+</form>
+
+       <a [routerLink]='["/dashboard"]'>Go back to Home</a>
+
+
+
+</div>       

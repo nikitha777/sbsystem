@@ -1,0 +1,86 @@
+
+
+
+
+
+  
+  
+  <nav class="navbar navbar-expand-md fixed-top">
+
+    <a class="imga" href="#">
+      <img src="/assets/img/dxclogo1.jpg" width="45" height="50" class="d-inline-block align-top" alt="logo">
+    </a>
+
+    &nbsp;
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/user-dashboard">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+  
+      </ul>
+    
+    </div>
+  </nav>
+
+
+
+
+
+
+
+  
+  <h4 align="center">CLICK HERE TO BOOK YOUR SEAT</h4>
+  <body>
+
+      <a name="form"></a>
+  
+  <div align="center" id="mydiv">  
+  
+    <div id="seatmap">
+      <div id="plane">
+          <table class="rows">
+              
+              
+          </table>
+          
+          <div id="cabin">        
+              <table>
+              <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              
+                <tr *ngFor='let seat of initialSeats'>
+               
+                    <button id="change"  type="button"  [style.background-color]="seat.isAvailable ? 'green' : 'red'" (click)="clickSeat(seat.seatId)"  >
+                    {{seat.seatId}}</button>
+              </tr>
+            
+              <tr *ngIf = 'updated'>
+            </table>
+          </div>
+        
+      </div>
+  </div>
+</div>

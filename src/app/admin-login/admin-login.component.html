@@ -1,0 +1,93 @@
+
+
+<nav class="navbar navbar-expand-md fixed-top">
+
+  <a class="imga" href="#">
+    <img src="/assets/img/dxclogo1.jpg" width="45" height="50" class="d-inline-block align-top" alt="logo">
+  </a>
+
+  &nbsp;
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contact">Contact</a>
+      </li>
+
+
+
+      <li class="nav-item dropdown fr">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="/userlogin">User</a>
+        </div>
+      </li>
+    
+      
+
+    </ul>
+  
+  </div>
+</nav>
+
+  
+
+
+
+
+
+
+
+
+<div class="bdyc">
+
+<div class="form frm">
+    <h2 class="ahd">Admin Login-Form</h2>
+    <form #adminForm='ngForm' (ngSubmit)='loginAdmin()'>
+        <small class="text-danger">{{msg}}</small>
+        <img src="https://www.radu.nl/sites/images/Rood.png" alt="Avatar" class="avatar" >
+
+        <div class="form-group mt-4">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" [(ngModel)]='admin.adminName' [pattern]="emailPattern" #email="ngModel"  class="form-control" placeholder="Enter email" aria-describedby="helpId" required> 
+            <div style="color: red;" class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched) ">
+            <div  *ngIf="email.errors?.required"class="text-danger"> email is required</div>
+            <div *ngIf="email.errors?.pattern" class="text-danger"> email is required in valid format</div>
+            </div>
+            </div>
+            <div class="form-group">         
+                <label for="password">Password</label>
+                 <input type="password" name="password" id="password" [(ngModel)]='admin.adminPassword' #password="ngModel" appCheckPassword required minlength="6" class="form-control" placeholder="Enter password" aria-describedby="helpId" >
+                 <div style="color: red" *ngIf="password.invalid && (password.dirty || password.touched) ">
+                    <div *ngIf="password.errors?.required" >*Password is required.</div>
+                    <div *ngIf="password.errors?.minlength">*Minimum length should be 6!! </div>   
+                    </div>
+                 </div>
+                
+                 <div>
+                   
+                    <button type="submit" [disabled]='adminForm.invalid' class="btn btn-primary">Login</button>
+                    
+                    <br> 
+                    <a [routerLink]='["/dashboard"]' > <br>Back to Home ?</a>
+
+                    <!-- <a [routerLink]='["/registration"]' class="float-right"> <br>Sign Up</a> -->
+
+                </div>
+                
+                </form>
+      </div>
+
+
+
+</div>      
